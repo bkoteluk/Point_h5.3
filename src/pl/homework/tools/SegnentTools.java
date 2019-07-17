@@ -1,15 +1,18 @@
 package pl.homework.tools;
 
 import pl.homework.lib.Point;
+import pl.homework.lib.Segment;
 
 public class SegnentTools {
+
     public double segmentLength(Point point1, Point point2) {
         double sideA;
         double sideB;
 //
-        sideA = point1.getX() >= point2.getX() ? point1.getX()-point2.getX() : point2.getX()-point1.getX();
-        sideB = point1.getY() >= point2.getY() ? point1.getY()-point2.getY() : point2.getY()-point1.getY();
-
+//        sideA = point1.getX() >= point2.getX() ? point1.getX()-point2.getX() : point2.getX()-point1.getX();
+//        sideB = point1.getY() >= point2.getY() ? point1.getY()-point2.getY() : point2.getY()-point1.getY();
+        sideA = point1.getX()-point2.getX();
+        sideB = point1.getY()-point2.getY();
         return Math.sqrt(sideA*sideA + sideB*sideB);
     }
 
@@ -22,6 +25,8 @@ public class SegnentTools {
         sideB = segmentLength(point2, point3);
         sideC = segmentLength(point1, point3);
 //        w trójkącie suma długości dwóch boków jest zawsze większa od długości trzeciego boku
-        return (sideA + sideB) > sideC;
+        return ((sideA + sideB) > sideC && (sideA + sideC) > sideB && (sideC + sideB) > sideA);
     }
+
+
 }

@@ -5,7 +5,30 @@ import pl.homework.lib.Point;
 import pl.homework.tools.*;
 
 public class AppTest {
+
+    public String printPoints(Point point1, Point point2) {
+        return "(x1, y1) = (" + point1.getX() + ", " + point1.getY() + ") i " +
+                "(x2, y2) = (" + point2.getX() + ", " + point2.getY() + ")";
+    }
+
+    public String printPoints(Point point1, Point point2, Point point3) {
+        return printPoints(point1, point2) +
+                "(x3, y3) = (" + point3.getX() + ", " + point3.getY() + ")";
+    }
+
+    public String printSegmentTest(SegnentTools segmentTools, Segment segment, Point point1, Point point2) {
+        return "Długość odcinka o współrzędnych:  " + printPoints(point1, point2) +
+                " jest równa " + segmentTools.segmentLength(segment.getPoint1(), segment.getPoint2());
+    }
+
+    public String printTriangleTest(SegnentTools segmentTools, Point point1, Point point2, Point point3) {
+        return "Punkty o współrzędnych " + printPoints(point1, point2, point3) +
+                (segmentTools.isTriangle(point1,point2,point3)? "tworzą trójkąt": "nie tworzą trójkąta");
+    }
+
+
     public static void main(String[] args) {
+        AppTest app = new AppTest();
         Point point1 = new Point(0,0);
         Point point2 = new Point(5, 4);
         Point point3 = new Point(6, 8);
@@ -22,11 +45,15 @@ public class AppTest {
         Segment segment = new Segment(point1, point3);
         SegnentTools segmentTools = new SegnentTools();
 
-        System.out.println("Długość odcinka o współrzędnych: (x1, y1) = (" + segment.getPoint1().getX() + ", "
-                + segment.getPoint1().getY() + ") i (x2, y2) = (" + segment.getPoint2().getX() + ", " + segment.getPoint1().getY() + ")" +
-                " jest równa " + segmentTools.segmentLength(segment.getPoint1(), segment.getPoint2()) );
-        System.out.print("Punkty o współrzędnych (x1,y1) = (" + point1.getX() + ", " + point1.getY() + ") (x2, y2) = (" +
-                + point2.getX() + ", " + point2.getY() + ") (x3,y3) = (" + point3.getX() + ", " + point3.getY() + ") ");
-        System.out.println(segmentTools.isTriangle(point1,point2,point3)? "tworzą trójkąt": "nie tworzą trójkąta");
+
+//        System.out.println("Długość odcinka o współrzędnych: (x1, y1) = (" + segment.getPoint1().getX() + ", "
+//                + segment.getPoint1().getY() + ") i (x2, y2) = (" + segment.getPoint2().getX() + ", " + segment.getPoint1().getY() + ")" +
+//                " jest równa " + segmentTools.segmentLength(segment.getPoint1(), segment.getPoint2()) );
+//        System.out.print("Punkty o współrzędnych (x1,y1) = (" + point1.getX() + ", " + point1.getY() + ") (x2, y2) = (" +
+//                + point2.getX() + ", " + point2.getY() + ") (x3,y3) = (" + point3.getX() + ", " + point3.getY() + ") ");
+//        System.out.println(segmentTools.isTriangle(point1,point2,point3)? "tworzą trójkąt": "nie tworzą trójkąta");
+
+        System.out.println(app.printSegmentTest(segmentTools, segment,point1,point2));
+        System.out.println(app.printTriangleTest(segmentTools, point1, point2, point3));
     }
 }
